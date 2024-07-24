@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #endif
 
 #include <stdlib.h>
+#include <stdint.h>
 
 #define _GPS_VERSION 13 // software version of this library
 #define _GPS_MPH_PER_KNOT 1.15077945
@@ -80,8 +81,8 @@ public:
   inline unsigned long hdop() { return _hdop; }
 
   void f_get_position(float *latitude, float *longitude, unsigned long *fix_age = 0);
-  void crack_datetime(int *year, byte *month, byte *day, 
-    byte *hour, byte *minute, byte *second, byte *hundredths = 0, unsigned long *fix_age = 0);
+  void crack_datetime(int *year, uint8_t *month, uint8_t *day, 
+    uint8_t *hour, uint8_t *minute, uint8_t *second, uint8_t *hundredths = 0, unsigned long *fix_age = 0);
   float f_altitude();
   float f_course();
   float f_speed_knots();
@@ -117,12 +118,12 @@ private:
   unsigned long _last_position_fix, _new_position_fix;
 
   // parsing state variables
-  byte _parity;
+  uint8_t _parity;
   bool _is_checksum_term;
   char _term[15];
-  byte _sentence_type;
-  byte _term_number;
-  byte _term_offset;
+  uint8_t _sentence_type;
+  uint8_t _term_number;
+  uint8_t _term_offset;
   bool _gps_data_good;
 
 #ifndef _GPS_NO_STATS
@@ -148,7 +149,7 @@ private:
 #undef int
 #undef char
 #undef long
-#undef byte
+#undef uint8_t
 #undef float
 #undef abs
 #undef round 

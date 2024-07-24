@@ -167,7 +167,7 @@ bool TinyGPS::term_complete()
 {
   if (_is_checksum_term)
   {
-    byte checksum = 16 * from_hex(_term[0]) + from_hex(_term[1]);
+    uint8_t checksum = 16 * from_hex(_term[0]) + from_hex(_term[1]);
     if (checksum == _parity)
     {
       if (_gps_data_good)
@@ -373,8 +373,8 @@ void TinyGPS::f_get_position(float *latitude, float *longitude, unsigned long *f
   *longitude = lat == GPS_INVALID_ANGLE ? GPS_INVALID_F_ANGLE : (lon / 1000000.0);
 }
 
-void TinyGPS::crack_datetime(int *year, byte *month, byte *day, 
-  byte *hour, byte *minute, byte *second, byte *hundredths, unsigned long *age)
+void TinyGPS::crack_datetime(int *year, uint8_t *month, uint8_t *day, 
+  uint8_t *hour, uint8_t *minute, uint8_t *second, uint8_t *hundredths, unsigned long *age)
 {
   unsigned long date, time;
   get_datetime(&date, &time, age);
